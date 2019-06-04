@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>index</title>
+</head>
+<body>
+<!--<h1 th:text="${name}"></h1>-->
+<!--
+th:test,显示文本内容，不会对内 容中的html标签转换
+th:value,标签的值
+th:utext,会把内容中的html代码转换
+
+-->
+<div>freemarker,thymeleaf</div>
+<div>
+    用户姓名：<input th:name="${user.name}" th:value="${user.name}"/>
+    <br/>
+    用户年龄：<input th:value="${user.age}"/>
+    <br/>
+    用户生日: <input th:value="${#dates.format(user.birthday,'yyyy年MM月dd日')}">
+</div>
+<br>
+<div th:object="${user}">
+    用户姓名：<input th:value="*{name}"/>
+    <br/>
+    用户年龄：<input th:value="*{age}"/>
+    <br/>
+    用户生日: <input th:value="*{#dates.format(birthday,'yyyy年MM月dd日')}">
+</div>
+</body>
+</html>

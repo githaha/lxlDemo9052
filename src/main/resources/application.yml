@@ -1,0 +1,48 @@
+
+#profile: dev
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/mmall_learning?useSSL=false&characterEncoding=utf-8
+    username: root
+    password: lixinlonga
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      test-on-borrow: true
+      stat-view-servlet:
+        allow: true
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: utf-8
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+
+mybatis:
+  type-aliases-package: com.pojo #实体类的包路径
+  mapper-locations: classpath:mapper/*.xml #mapper文件路径
+
+#分页插件的配置
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  params: count=countSql
+  support-methods-arguments: true
+
+
+
+
+
+
+
