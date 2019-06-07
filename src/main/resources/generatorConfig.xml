@@ -25,7 +25,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
 
-        <!-- model的配置 -->
+        <!-- model-pojo的配置 -->
         <javaModelGenerator targetPackage="com.pojo"
                             targetProject="src/main/java">
             <!-- 是否允许子包 -->
@@ -40,7 +40,7 @@
 
 
         <!-- mybatis的xml的配置 -->
-        <sqlMapGenerator targetPackage="mapper"
+        <sqlMapGenerator targetPackage="com.mapper"
                          targetProject="src/main/resources">
             <property name="enableSubPackages" value="true" />
         </sqlMapGenerator>
@@ -51,13 +51,8 @@
             <property name="enableSubPackages" value="true" />
         </javaClientGenerator>
 
-
-        <table tableName="mmall_user"
-               enableCountByExample="false"
-               enableUpdateByExample="false"
-               enableDeleteByExample="false"
-               enableSelectByExample="false"
-               selectByExampleQueryId="false">
+        <!--//mmall_user-->
+        <table tableName="mmall_user">
             <generatedKey column="id" sqlStatement="JDBC" identity="true"/>
         </table>
 

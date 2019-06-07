@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "com.opensource")
 @PropertySource(value = "classpath:resource.properties")
-public class Resource {
+public class DrResource {
     private String name;
     private String age;
     private String language;
