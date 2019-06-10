@@ -2,20 +2,21 @@ package com.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.pojo.IMoocJSONResult;
-import com.pojo.DrResource;
-import com.pojo.MmallUser;
+import com.pojo.*;
 import com.pojo.User;
 import com.service.UserService;
 import com.tasks.AsyncTask;
 import com.tasks.TaskTest;
+import com.utils.HttpClientUtil;
+import com.utils.JsonUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Future;
 
 /****
@@ -90,4 +91,30 @@ public class HelloController {
 
         return "任务全部完成时间："+(end - start) + "毫秒";
     }
+    @GetMapping(value = "/wxLogin")
+    public IMoocJSONResult wxLogin(@RequestParam(value = "code",required = true)String code) {
+
+//        String code = "001AuJk12QMYsV0WItl12SzNk12AuJkz";
+        System.out.println("wxlogin - code: " + code);
+
+//		https://api.weixin.qq.com/sns/jscode2session?
+//				appid=APPID&
+//				secret=SECRET&
+//				js_code=JSCODE&
+//				grant_type=authorization_code
+
+        String url = "https://api.weixin.qq.com/sns/jscode2session";
+        Map<String, String> param = new HashMap<>();
+        param.put("appid", "wxe00d265211cf4ce1");
+        param.put("secret", "5fc8902aa36265107bf616902b52b663");
+        param.put("js_code", code);
+        param.put("grant_type", "authorization_code");
+
+        String wxResult = HttpClientUtil.doGet(url, param);
+        System.out.println(wxResult);
+//        WXSessionModel model = JsonUtils.jsonToPojo(wxResult, WXSessionModel.class);
+
+        return IMoocJSONResult.ok(wxResult);
+    }
+
 }
